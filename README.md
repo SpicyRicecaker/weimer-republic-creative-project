@@ -1,6 +1,7 @@
+https://elated-turing-7a59d4.netlify.app
+
 # The Weimer Republic
 - Why did it fail?
-
 
 ## Summary
 - Initially after the war, everyone was very happy to be home
