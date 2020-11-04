@@ -1,63 +1,23 @@
 <script lang="ts">
   import Chart from './Chart.svelte';
-  let time = 1;
-  let dataset = {
-    type: 'line',
-    data: {
-      labels: [
-        'Jan 1914',
-        'Jan 1918',
-        'Jan 1919',
-        'Jul 1919',
-        'Jan 1920',
-        'Jul 1920',
-        'Jan 1921',
-        'Jul 1921',
-        'Jan 1922',
-        'Jul 1922',
-        'Jan 1923',
-        'Jul 1923',
-        'Dec 1923',
-      ],
-      datasets: [
-        {
-          label: 'marks to dollar',
-          data: [
-            4,
-            5,
-            8,
-            14,
-            26,
-            36,
-            62,
-            72,
-            182,
-            470,
-            17000,
-            375000,
-            4000000000000,
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
-          borderWidth: 1,
-        },
-      ],
-    },
-  };
+  import { fade, fly, slide } from 'svelte/transition';
+  import type { get } from 'svelte/store';
+  let time;
+
+  let content: Map<number, string> = new Map();
+  content.set(0, 'Antebellum Germany');
+  content.set(1, 'Postbellum Germany');
+  content.set(
+    10,
+    "In January of 1923, the French invaded Germany and occupied its factories as they didn't believe Germany couldn't make the reparation payments. In addition to domestic insecurities, the government panicked and started to print money."
+  );
+
+  // let currentContent;
+  $:currentContent = content.get(time);
+  // const getContent = (num: number) => {
+  //   const b = content.get(num);
+  //   return b ? b : '';
+  // };
 </script>
 
 <style lang="scss">
@@ -70,13 +30,26 @@
     align-items: center;
     justify-content: center;
   }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+  
+  p {
+    width: 30%;
+  }
 </style>
 
 <div class="main">
-  <h2>Value of marks over time</h2>
-  <Chart />
-  <p>(visual representation of money here, src.)</p>
-  {#if dataset.data.datasets[0].data[time] === 4000000000000}
+  <h2>Money is a <i>Belief</i></h2>
+  {#if currentContent}
+    <p transition:slide|local>{currentContent}</p>
+  {/if}
+  <!-- <h2>Value of marks over time</h2> -->
+  <Chart bind:time />
+  <p />
+  {#if time === 12}
     <div>
       <ul>
         <li>life savings gone up in flames</li>
