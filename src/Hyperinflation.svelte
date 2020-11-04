@@ -1,21 +1,63 @@
 <script lang="ts">
   import Chart from './Chart.svelte';
   let time = 1;
-  let exchangeRate = [
-    { date: 'January 1914', marks: 4 },
-    { date: 'January 1918', marks: 5 },
-    { date: 'January 1919', marks: 8 },
-    { date: 'July 1919', marks: 14 },
-    { date: 'January 1920', marks: 26 },
-    { date: 'July 1920', marks: 37 },
-    { date: 'January 1921', marks: 62 },
-    { date: 'July 1921', marks: 73 },
-    { date: 'January 1922', marks: 182 },
-    { date: 'July 1922', marks: 470 },
-    { date: 'January 1923', marks: 17000 },
-    { date: 'July 1923', marks: 375000 },
-    { date: 'December 1923', marks: '4000000000000' },
-  ];
+  let dataset = {
+    type: 'line',
+    data: {
+      labels: [
+        'Jan 1914',
+        'Jan 1918',
+        'Jan 1919',
+        'Jul 1919',
+        'Jan 1920',
+        'Jul 1920',
+        'Jan 1921',
+        'Jul 1921',
+        'Jan 1922',
+        'Jul 1922',
+        'Jan 1923',
+        'Jul 1923',
+        'Dec 1923',
+      ],
+      datasets: [
+        {
+          label: 'marks to dollar',
+          data: [
+            4,
+            5,
+            8,
+            14,
+            26,
+            36,
+            62,
+            72,
+            182,
+            470,
+            17000,
+            375000,
+            4000000000000,
+          ],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+  };
 </script>
 
 <style lang="scss">
@@ -34,9 +76,7 @@
   <h2>Value of marks over time</h2>
   <Chart />
   <p>(visual representation of money here, src.)</p>
-  <div>{exchangeRate[time].date}, {exchangeRate[time].marks}</div>
-  <input id="threshold" type="range" min="0" max="12" bind:value={time} />
-  {#if exchangeRate[time].marks === '4000000000000'}
+  {#if dataset.data.datasets[0].data[time] === 4000000000000}
     <div>
       <ul>
         <li>life savings gone up in flames</li>
