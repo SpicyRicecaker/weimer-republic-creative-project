@@ -1,9 +1,6 @@
 <script lang="ts">
   import { tick } from 'svelte';
-
-  import App from './App.svelte';
   import Hyperinflation from './hyperinflation.svelte';
-
   export let views;
 </script>
 

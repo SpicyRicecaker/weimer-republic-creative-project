@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Chart from './Chart.svelte';
   let time = 1;
   let exchangeRate = [
     { date: 'January 1914', marks: 4 },
@@ -31,6 +32,7 @@
 
 <div class="main">
   <h2>Value of marks over time</h2>
+  <Chart />
   <p>(visual representation of money here, src.)</p>
   <div>{exchangeRate[time].date}, {exchangeRate[time].marks}</div>
   <input id="threshold" type="range" min="0" max="12" bind:value={time} />

@@ -41,7 +41,27 @@
     background-color: #2b2b2b;
     margin: 0;
     padding: 0;
+
+
+    /* The emerging W3C standard
+   that is currently Firefox-only */
+    scrollbar-width: thin;
+    scrollbar-color: #2b2b2b gray;
+
+    /* Works on Chrome/Edge/Safari */
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2b2b2b;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: gray;
+      border-radius: 1rem;
+      // border: 3px solid orange;
+    }
   }
+  
   main {
     height: 100%;
     width: 100%;
