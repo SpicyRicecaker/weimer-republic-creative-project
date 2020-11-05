@@ -3,7 +3,7 @@
   import Chart from './Chart.svelte';
   import { fade, fly, slide } from 'svelte/transition';
   import FourtyEight from './FourtyEight.svelte';
-import Hyperinflation2 from './Hyperinflation2.svelte';
+  import Hyperinflation2 from './Hyperinflation2.svelte';
 
   export let views;
   // Everywhere else there should be nothing
@@ -21,7 +21,7 @@ import Hyperinflation2 from './Hyperinflation2.svelte';
   contentMap.set(
     10,
     // "In January of 1923, the French invaded Germany and occupied its factories. They didn't believe Germany couldn't make the reparation payments. In fear of high unemployment leading to a revolution, the government panicked and started to print money."
-    'Germany starts to <b>print money</b> to pay back the French'
+    'Germany starts <b>mass printing money</b> to pay workers on strike against the French, who they missed a reparation payment to.'
   );
 
   let contentList: string[] = [contentMap.get(0)];

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { tick } from 'svelte';
-  import Hyperinflation from './Hyperinflation.svelte';
+  import Hyperinflation from './hyperinflation.svelte';
   export let views;
 </script>
 
@@ -14,7 +14,6 @@
     font-size: 4rem;
     font-weight: 100;
   }
-
 </style>
 
 <div class="main">
