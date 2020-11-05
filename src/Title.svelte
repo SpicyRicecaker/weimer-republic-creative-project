@@ -5,7 +5,7 @@
 </script>
 
 <style lang="scss">
-  $munchingOrange: #f1c232;
+  @use 'styles/page';
   h1 {
     text-align: center;
     font-family: 'Bebas Neue', cursive;
@@ -15,41 +15,9 @@
     font-weight: 100;
   }
 
-  .title-page {
-    height: 90%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  button {
-    // Sets to white
-    color: white;
-    font-size: 4rem;
-    // Clears button
-    background: none;
-    outline: none;
-    border: none;
-    // Sets button area
-    padding: 1rem;
-    // Gets rid of slightly rounded corners
-    border-radius: 0;
-    transition: 1s;
-    &:hover {
-      color: $munchingOrange;
-      cursor: pointer;
-    }
-    &:active {
-      transition: 0s;
-      // background: $munchingOrange;
-      background: #2b2b2b;
-      color: white;
-    }
-  }
 </style>
 
-<div class="title-page">
+<div class="main">
   <h1>
     The Fall of the Weimar Republic
     <div style="font-size: 1rem; font-weight: normal; font-family: arial">
@@ -58,6 +26,7 @@
   </h1>
   <!-- <p>by Andy Li</p> -->
   <button
+    class="next-button"
     on:click|once={async () => {
       views = [...views, { label: 'Hyperinflation', value: 0, component: Hyperinflation }];
       await tick();

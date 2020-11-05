@@ -1,22 +1,30 @@
 <script lang="ts">
+  import { tick } from 'svelte';
   import Chart from './Chart.svelte';
   import { fade, fly, slide } from 'svelte/transition';
-  import type { get } from 'svelte/store';
-  import type { current_component } from 'svelte/internal';
+  import FourtyEight from './FourtyEight.svelte';
+import Hyperinflation2 from './Hyperinflation2.svelte';
 
+  export let views;
   // Everywhere else there should be nothing
   let contentMap: Map<number, string> = new Map();
-  contentMap.set(0, 'Antebellum Germany: Prosperous, 4 marks to the dollar');
+  contentMap.set(
+    0,
+    // 'Antebellum Germany had a prosperous economy, with the value of marks priced 4 to the dollar'
+    'Antebellum Germany had a great economy with currency that was indexed to gold. (drag slider to continue)'
+  );
   contentMap.set(
     1,
-    'Postbellum Germany: Treaty of Versailles, start of reparation payments'
+    // 'The economy of postbellum Germany was heavily affected by Treaty of Versailles, which lead to the start of reparation payments...'
+    'Postbellum Germany saw the forced terms of the treaty of versailles along with the start of reparation payments'
   );
   contentMap.set(
-    8,
-    "In January of 1923, the French invaded Germany and occupied its factories. They didn't believe Germany couldn't make the reparation payments. In fear of high unemployment leading to a revolution, the government panicked and started to print money."
+    10,
+    // "In January of 1923, the French invaded Germany and occupied its factories. They didn't believe Germany couldn't make the reparation payments. In fear of high unemployment leading to a revolution, the government panicked and started to print money."
+    'Germany starts to <b>print money</b> to pay back the French'
   );
 
-  let contentList: string[] = [];
+  let contentList: string[] = [contentMap.get(0)];
 
   let time = 0;
   let pastIndex = 0;
@@ -24,19 +32,23 @@
   const getMods = (newIndex: number) => {
     // Find the difference between current and past
     const diff = time - pastIndex;
-    let sign = diff > 0 ? 1 : -1;
-    // Collect all "diffs" between now and diff
-    let diffs = 0;
-    while (pastIndex !== newIndex) {
-      const t = contentMap.get(pastIndex);
-      if (t) {
-        if (sign === 1) {
-          contentList.push(t);
-        } else {
+    console.log(time, pastIndex);
+    if (diff > 0) {
+      while (pastIndex !== time) {
+        const b = contentMap.get(pastIndex + 1);
+        if (b) {
+          contentList.push(b);
+        }
+        pastIndex += 1;
+      }
+    } else {
+      while (pastIndex !== time) {
+        const b = contentMap.get(pastIndex);
+        if (b) {
           contentList.pop();
         }
+        pastIndex -= 1;
       }
-      pastIndex += sign;
     }
     return contentList;
   };
@@ -45,15 +57,7 @@
 </script>
 
 <style lang="scss">
-  .main {
-    height: 90%;
-    width: 100%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  @use 'styles/page';
 
   .mainpre {
     color: white;
@@ -63,6 +67,14 @@
     justify-content: center;
   }
 
+  // .mainend {
+  //   color: white;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+
   h2 {
     font-size: 2rem;
     font-weight: 100;
@@ -70,8 +82,8 @@
 
   p {
     width: 30%;
-    margin: 0;
-    padding: 0;
+    // margin: 0;
+    // padding: 0;
   }
 
   .center {
@@ -80,23 +92,30 @@
 </style>
 
 <div class="mainpre">
-  <h2>"All Money is a matter of <i>Belief"</i><sup>[src]</sup></h2>
+  <h2>
+    " All Money is a matter of
+    <i>Belief "</i>
+    <sup style="font-size:.8rem; color: lightblue;">[1]</sup>
+  </h2>
   {#each contentList as content}
     <p transition:slide>
       {@html content}
     </p>
   {/each}
+  {#if time === 12}
+    <button
+      class="next-button"
+      on:click|once={async () => {
+        views = [...views, { label: 'Hyperinflation2', value: 0, component: Hyperinflation2 }];
+        await tick();
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth',
+        });
+      }}>&#8595;</button>
+  {/if}
 </div>
 <div class="main">
   <!-- <h2>Value of marks over time</h2> -->
   <Chart bind:time />
 </div>
-{#if time === 12}
-  <div>
-    <ul>
-      <li>life savings gone up in flames</li>
-      <li>hard work destroyed</li>
-      <li>loss of capacity of surprise</li>
-    </ul>
-  </div>
-{/if}

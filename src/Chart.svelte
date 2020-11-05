@@ -39,39 +39,45 @@
       labels: ['Jan 1914'],
       datasets: [
         {
-          label: 'marks to dollar',
+          label: 'Exchange rate of marks to dollar',
           data: [4],
-          backgroundColor: [
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
-            '#f1c23220',
+          pointBorderColor: [
+            '#1155cc',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#f1c232',
+            '#ff5151', //Start of payments
+            '#ff5151',
+            '#ff5151',
           ],
-          borderColor: [
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
-            '#f1c232',
+          pointBackgroundColor: [
+            '#1155cc40',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#f1c23240',
+            '#cc000040',
+            '#cc000040', //Start of payments
+            '#cc000040',
           ],
-          borderWidth: 1,
+          // pointBorderWidth: 1,
+          // pointRadius: 6,
+          // pointHitRadius: 12,
+          // pointStyle: 'rect',
+          // borderWidth: 2,
+          // borderColor: '#f1c232',
+          // backgroundColor: '#f1c23220',
         },
       ],
     },
@@ -96,18 +102,23 @@
   });
 </script>
 
+<style lang="scss">
+  input[type='range'] {
+    width: 50%;
+    opacity: 0.5;
+    transition: .5s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+</style>
+
 <canvas id="myChart" width="3" height="1" />
 
-<div>{charData.labels[time]}, {charData.data[time]}</div>
+<!-- <div>{charData.labels[time]} - {charData.data[time]}:1</div> -->
 <!-- <button
   on:click={() => {
     charInfo.data.labels.push('123123123123');
     myChart.update();
   }} /> -->
-<input
-  id="threshold"
-  type="range"
-  min="0"
-  max="12"
-  bind:value={time}
-  on:input={updateChart} />
+<input type="range" min="0" max="12" bind:value={time} on:input={updateChart} />

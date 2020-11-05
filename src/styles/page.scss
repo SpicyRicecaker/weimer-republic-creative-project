@@ -1,0 +1,35 @@
+$munchingOrange: #f1c232;
+.main {
+  color: white;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-button {
+  // Sets to white
+  color: white;
+  font-size: 4rem;
+  // Clears button
+  background: none;
+  outline: none;
+  border: none;
+  // Sets button area
+  padding: 1rem;
+  // Gets rid of slightly rounded corners
+  border-radius: 0;
+  transition: 1s;
+  &:hover {
+    color: $munchingOrange;
+    cursor: pointer;
+  }
+  &:active {
+    transition: 0s;
+    // background: $munchingOrange;
+    background: #2b2b2b;
+    color: white;
+  }
+}
