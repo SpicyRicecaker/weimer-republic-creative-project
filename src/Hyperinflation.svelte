@@ -32,7 +32,7 @@
   const getMods = (newIndex: number) => {
     // Find the difference between current and past
     const diff = time - pastIndex;
-    console.log(time, pastIndex);
+    // console.log(time, pastIndex);
     if (diff > 0) {
       while (pastIndex !== time) {
         const b = contentMap.get(pastIndex + 1);
@@ -80,14 +80,35 @@
     font-weight: 100;
   }
 
-  p {
-    width: 30%;
-    // margin: 0;
-    // padding: 0;
+  .dialogue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
   }
+
+  p {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
 
   .center {
     flex: 1;
+  }
+
+  .main2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    p {
+      width: 90%;
+    }
   }
 </style>
 
@@ -97,11 +118,13 @@
     <i>Belief "</i>
     <sup style="font-size:.8rem; color: lightblue;">[1]</sup>
   </h2>
-  {#each contentList as content}
-    <p transition:slide>
-      {@html content}
-    </p>
-  {/each}
+  <!-- <div class="dialogue"> -->
+    {#each contentList as content}
+      <p transition:slide|local>
+        {@html content}
+      </p>
+    {/each}
+  <!-- </div> -->
   {#if time === 12}
     <button
       class="next-button"
@@ -115,7 +138,9 @@
       }}>&#8595;</button>
   {/if}
 </div>
-<div class="main">
+
+<div class="main2">
+  <!-- <div class="main"> -->
   <!-- <h2>Value of marks over time</h2> -->
   <Chart bind:time />
 </div>

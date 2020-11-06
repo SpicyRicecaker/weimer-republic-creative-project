@@ -103,17 +103,21 @@
 </script>
 
 <style lang="scss">
+  div {
+    display: grid;
+    // flex: 1;
+  }
   input[type='range'] {
     width: 50%;
     opacity: 0.5;
-    transition: .5s;
+    transition: 0.5s;
     &:hover {
       opacity: 1;
     }
   }
 </style>
 
-<canvas id="myChart" width="3" height="1" />
+<div><canvas id="myChart" /></div>
 
 <!-- <div>{charData.labels[time]} - {charData.data[time]}:1</div> -->
 <!-- <button
