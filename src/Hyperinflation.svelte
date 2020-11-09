@@ -85,12 +85,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
   }
 
   p {
-    width: 50%;
-    margin: 0;
+    width: 30%;
+    margin: 1rem;
     padding: 0;
   }
 
@@ -127,6 +126,7 @@
   <!-- </div> -->
   {#if time === 12}
     <button
+      transition:slide|local
       class="next-button"
       on:click|once={async () => {
         views = [...views, { label: 'Hyperinflation2', value: 0, component: Hyperinflation2 }];

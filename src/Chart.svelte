@@ -104,9 +104,10 @@
 
 <style lang="scss">
   div {
-    display: grid;
+    width: 80%;
     // flex: 1;
   }
+  
   input[type='range'] {
     width: 50%;
     opacity: 0.5;
