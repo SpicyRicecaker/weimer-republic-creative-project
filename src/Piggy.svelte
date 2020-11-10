@@ -1,9 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import App from './App.svelte';
+  import Chart from './Chart.svelte';
+  import FourtyEight from './FourtyEight.svelte';
 
   type aniTerm = [HTMLElement, any[], any];
 
-  const aniAll = async (aniSequence: aniTerm[]) => {
+  const aniAll = async (aniSequence: aniTerm[]): Promise<Animation[]> => {
     // Store all animations so we can cancel
     const completed: Animation[] = [];
     // Loop through sequence
@@ -16,7 +19,7 @@
     return completed;
   };
 
-  const aniParallel = async (aniSequence: aniTerm[]) => {
+  const aniParallel = async (aniSequence: aniTerm[]): Promise<Animation[]> => {
     // Store all animations
     const todo: Promise<Animation>[] = [];
     // Loop through sequence
@@ -46,7 +49,7 @@
         document.getElementById('acba3a9f-40d1-4c95-b406-3d673201214d'),
         [{}, { transform: 'translateY(20%)' }],
         {
-          duration: 1000,
+          duration: 600,
           fill: 'forwards' as FillMode,
           easing: 'ease-in',
         },
@@ -66,11 +69,11 @@
         document.getElementById('b9c92815-d1c6-4be1-95eb-009565526158'),
         [
           { transform: 'rotateX(0)' },
-          { transform: 'rotateX(20deg)' },
+          { transform: 'rotateX(10deg)' },
           { transform: 'rotateX(0)' },
         ],
         {
-          duration: 1000,
+          duration: 700,
           fill: 'forwards' as FillMode,
           easing: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
         },
@@ -112,12 +115,75 @@
         },
       ],
     ];
+    const aniFire: aniTerm[] = [
+      [
+        document.getElementById('a54ce1b2-ad44-4250-9bca-8b6e66a38051'),
+        [{}, { transform: 'rotateX(-20deg)', opacity: '1' }, {}],
+        {
+          duration: 3000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+    ];
+    const aniCooked: aniTerm[] = [
+      [
+        document.getElementById('b9c92815-d1c6-4be1-95eb-009565526158'),
+        [{}, { transform: 'rotateX(-20deg)' }, {}],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+    ];
+    const aniMoney: aniTerm[] = [
+      // Dollar mid
+      [
+        document.getElementById('a789c028-01e0-49c7-94b0-54cee7d952f8'),
+        [{}, { opacity: '0' }],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Dollar far
+      [
+        document.getElementById('acba3a9f-40d1-4c95-b406-3d673201214d'),
+        [{}, { opacity: '0' }],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Dollar near
+      [
+        document.getElementById('beeb1395-71ae-4f2d-a476-13b29f6df40f'),
+        [{}, { opacity: '0' }],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+    ];
 
-    const done = [];
+    let done: Animation[][] = [];
     // Money in, piggy shake!
     done.push(await aniAll(aniPiggy));
     // Ear move uwu
     done.push(await aniParallel(aniEars));
+    // Fire burns while the pig fades and bacon appears
+    // also some really good looking code right here xd ikr sushi pancaker 123
+    done.push(
+      ...(await Promise.all([
+        aniAll(aniFire),
+        aniParallel(aniMoney),
+        aniAll(aniCooked),
+      ]))
+    );
   });
 </script>
 
