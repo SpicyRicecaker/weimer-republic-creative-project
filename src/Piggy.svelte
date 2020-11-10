@@ -75,7 +75,7 @@
         {
           duration: 700,
           fill: 'forwards' as FillMode,
-          easing: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
+          easing: 'ease-out',
         },
       ],
     ];
@@ -118,20 +118,64 @@
     const aniFire: aniTerm[] = [
       [
         document.getElementById('a54ce1b2-ad44-4250-9bca-8b6e66a38051'),
-        [{}, { transform: 'rotateX(-20deg)', opacity: '1' }, {}],
+        [
+          { transform: 'translateY(-20%)' },
+          { opacity: '1', transform: 'translateY(0)' },
+        ],
         {
-          duration: 3000,
+          duration: 2000,
+          fill: 'forwards' as FillMode,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        },
+      ],
+      [
+        document.getElementById('a54ce1b2-ad44-4250-9bca-8b6e66a38051'),
+        [
+          {},
+          { transform: 'rotateX(-20deg)' },
+          { transform: 'rotateX(0)' },
+          { transform: 'rotateX(-20deg)' },
+          { transform: 'rotateX(0)' },
+          { transform: 'rotateX(-20deg)' },
+          { transform: 'rotateX(0)' },
+        ],
+        {
+          duration: 2000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      [
+        document.getElementById('a54ce1b2-ad44-4250-9bca-8b6e66a38051'),
+        [{ transform: 'translateY(-20%)', opacity: '0' }],
+        {
+          duration: 1000,
           fill: 'forwards' as FillMode,
           easing: 'ease-in',
         },
       ],
     ];
     const aniCooked: aniTerm[] = [
+      // Piggy bye bye
       [
         document.getElementById('b9c92815-d1c6-4be1-95eb-009565526158'),
-        [{}, { transform: 'rotateX(-20deg)' }, {}],
+        [{}, { opacity: '0' }],
         {
-          duration: 1000,
+          delay: 700,
+          duration: 2000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Hello bacon
+      [
+        document.getElementById('f786f173-0116-4f88-a329-9f99a13e6ebc'),
+        [
+          { transform: 'translateY(-20%)' },
+          { transform: 'translateY(-20%)', opacity: '1' },
+        ],
+        {
+          duration: 2000,
           fill: 'forwards' as FillMode,
           easing: 'ease-in',
         },
@@ -168,6 +212,56 @@
           easing: 'ease-in',
         },
       ],
+      // Plus coin
+      [
+        document.getElementById('e56dcf03-83ea-4559-b88f-d3a51f4c8f93'),
+        [
+          { transform: 'translateY(0)' },
+          { transform: 'translateY(0)', opacity: '1' },
+        ],
+        {
+          delay: 2700,
+          duration: 2000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+    ];
+
+    const aniBacon: aniTerm[] = [
+      // Bacon top
+      [
+        document.getElementById('a1688cb5-7780-4f15-87b3-da5a00e1fa66'),
+        [{}, { transform: 'translateY(-3%)' }, {}],
+        {
+          delay: 1400,
+          duration: 200,
+          // fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Bacon bot
+      [
+        document.getElementById('be4484ab-3550-42d5-afc6-b69ec9b355b6'),
+        [{}, { transform: 'translateY(-3%)' }, {}],
+        {
+          delay: 2800,
+          duration: 200,
+          // fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Dollar near
+      [
+        document.getElementById('e56dcf03-83ea-4559-b88f-d3a51f4c8f93'),
+        [{}, { transform: 'rotate(180deg)' } ],
+        {
+          delay: 5000,
+          duration: 1000,
+          // fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
     ];
 
     let done: Animation[][] = [];
@@ -184,6 +278,9 @@
         aniAll(aniCooked),
       ]))
     );
+    do {
+      done.push(await aniParallel(aniBacon));
+    } while (true);
   });
 </script>
 
@@ -193,7 +290,7 @@
 
 <div class="main">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.07 134.12"><defs>
-      <style>
+      <style lang="scss">
         .b9ce9df4-63f1-46ff-98f2-4be89320446a {
           opacity: 0;
         }
@@ -242,6 +339,23 @@
         }
         #b3094268-c03a-4414-9cac-98f3b3789a1b {
           transform-origin: bottom;
+          transform-box: fill-box;
+        }
+        #a54ce1b2-ad44-4250-9bca-8b6e66a38051 {
+          transform-origin: bottom;
+          transform-box: fill-box;
+        }
+        #e56dcf03-83ea-4559-b88f-d3a51f4c8f93 {
+          transform-origin: center;
+          transform-box: fill-box;
+        }
+        // Bacon here
+        #a1688cb5-7780-4f15-87b3-da5a00e1fa66 {
+          transform-origin: center;
+          transform-box: fill-box;
+        }
+        #be4484ab-3550-42d5-afc6-b69ec9b355b6 {
+          transform-origin: center;
           transform-box: fill-box;
         }
       </style>
