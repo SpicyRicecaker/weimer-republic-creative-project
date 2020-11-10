@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { activeView, viewedRight } from './stores';
+  import { activeView, viewedLeft } from './stores';
 </script>
 
 <style lang="scss">
   .back {
     position: fixed; /* Set the navbar to fixed position */
-    left: 0; /* Position the navbar at the top of the page */
+    right: 0; /* Position the navbar at the top of the page */
     height: 100%;
     // top: 0;
     // width: 100%;
     width: 1.5rem;
     // height: 1rem;
-    padding-left: 1rem;
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,16 +35,22 @@
             cursor: pointer;
             & .a8a30843-d639-4ca4-ab05-e0a6aafc651f {
               stroke: #f1c232;
-              transform: translateX(-15%);
+              transform: rotate(180deg) translateX(-45%);
             }
           }
         }
         .a8a30843-d639-4ca4-ab05-e0a6aafc651f {
+          transform-origin: center;
+          transform-box: fill-box;
+          transform: rotate(180deg);
           transition: transform 0.2s;
         }
       </style>
     </defs>
-    <g id="a6b7e4a0-cd01-4de0-9767-4a7053ac3c7d" data-name="Layer 2" on:click={() => ($activeView = 0)}>
+    <g
+      id="a6b7e4a0-cd01-4de0-9767-4a7053ac3c7d"
+      data-name="Layer 2"
+      on:click={() => ($activeView = 0)}>
       <g id="ada5ea39-6e38-4be9-951c-ce014bef0d06" data-name="Hyperinflationo">
         <rect
           class="ebe2baaf-a2ba-4012-9452-a6e7b729abf2"
@@ -62,6 +68,6 @@
       </g>
     </g></svg>
 </div>
-{#each $viewedRight as view}
+{#each $viewedLeft as view}
   <svelte:component this={view} />
 {/each}

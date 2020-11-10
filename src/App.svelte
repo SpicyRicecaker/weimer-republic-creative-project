@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { onMount } from 'svelte';
-  import { viewed, viewedRight } from './stores';
+  import { viewed, viewedRight, viewedLeft } from './stores';
 
   // Tabbed view, created from mageX
   import Tab from './Tab.svelte';
@@ -14,6 +14,7 @@
   import Right from './Right.svelte';
   // Left page
   import FourtyEight from './FourtyEight.svelte';
+  import Left from './Left.svelte';
 
   // The way we're storing components
   interface viewItem {
@@ -39,9 +40,9 @@
       component: Right,
     },
     {
-      label: 'FourtyEight',
+      label: 'Left',
       value: 2,
-      component: FourtyEight,
+      component: Left
     },
   ];
 
@@ -49,6 +50,7 @@
   onMount(() => {
     $viewed = [Title];
     $viewedRight = [Hyperinflation];
+    $viewedLeft = [FourtyEight];
   });
 </script>
 

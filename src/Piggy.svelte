@@ -1,8 +1,5 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import App from './App.svelte';
-  import Chart from './Chart.svelte';
-  import FourtyEight from './FourtyEight.svelte';
 
   type aniTerm = [HTMLElement, any[], any];
 
