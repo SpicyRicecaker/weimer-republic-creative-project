@@ -97,6 +97,16 @@
         },
       ],
     ];
+    const aniPath: aniTerm[] = [
+      [
+        document.getElementById('bf89388b-46e8-405a-a6be-1ba10992973e'),
+        [{}, { opacity: '1' }],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+        },
+      ],
+    ];
 
     // Then move the bill into the reischstag
 
@@ -109,13 +119,17 @@
     const done: Animation[][] = [];
     // The people's will goes through!
     done.push(await aniAll(aniPeople));
-    // The members...they're kinda afk ngl
     done.push(await aniParallel(aniMembers));
-    // Then we alert that the people have stopped responding
-    await alert(
-      "Due to internal conflicts, the Reischstag has stopped responding! Good Luck!"
+    // The members...they're kinda afk ngl
+    await asyncAlert(
+      'Due to sweeping conflicts of interest, the Reischstag has stopped responding! Good Luck!'
     );
+    // Then we alert that the people have stopped responding
+    done.push(await aniParallel(aniPath));
   });
+
+  const asyncAlert = (str: string) =>
+    new Promise((resolve) => resolve(confirm(str)));
 
   const addPresident = async () => {
     // If we haven't already added the timeline
