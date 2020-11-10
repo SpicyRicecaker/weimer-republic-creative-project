@@ -6,8 +6,6 @@
   @import 'styles/page.scss';
 </style>
 
-<div class="main">
-  {#each $viewed as view}
-    <svelte:component this={view} />
-  {/each}
-</div>
+{#each $viewed as view}
+  <svelte:component this={view} />
+{/each}

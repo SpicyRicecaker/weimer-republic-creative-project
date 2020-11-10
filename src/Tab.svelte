@@ -12,25 +12,21 @@
 </script>
 
 <style lang="scss">
-  .main {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  div {
-    flex: 1;
-    // overflow: auto;
-  }
+  // .main {
+  //   width: 100%;
+  //   height: 100%;
+  //   // display: flex;
+  //   // flex-direction: column;
+  // }
+  // div {
+  //   // flex: 1;
+  //   // overflow: auto;
+  // }
 </style>
 
-<div class="main">
-  <Nav {views} bind:activeView />
-  {#each views as view}
-    {#if activeView === view.value}
-      <div>
-        <svelte:component this={view.component} />
-      </div>
-    {/if}
-  {/each}
-</div>
+<!-- <Nav {views} bind:activeView /> -->
+{#each views as view}
+  {#if activeView === view.value}
+    <svelte:component this={view.component} />
+  {/if}
+{/each}

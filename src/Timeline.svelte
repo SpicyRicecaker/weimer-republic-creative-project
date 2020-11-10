@@ -1,5 +1,4 @@
 <script lang="ts">
-
 </script>
 
 <style lang="scss">
@@ -39,7 +38,6 @@
     padding: 0;
   }
 
-
   .center {
     flex: 1;
   }
@@ -57,4 +55,15 @@
   }
 </style>
 
-<div class="main">timeline here</div>
+<div class="main">
+  timeline here Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+  exercitationem blanditiis neque odit quaerat quis, nesciunt officiis
+  necessitatibus expedita, quibusdam voluptates? Corporis laboriosam error
+  consectetur quas hic dolor aspernatur Lorem ipsum dolor sit amet, consectetur
+  adipisicing elit. Odio sapiente consequatur neque, sequi necessitatibus et
+  magnam ullam! Molestiae nesciunt autem velit, suscipit repellendus quae,
+  quidem earum repellat veritatis animi sed. Lorem ipsum dolor sit amet
+  consectetur adipisicing elit. Et officiis culpa perferendis dignissimos
+  reprehenderit quidem qui ullam soluta quas veniam, quisquam aliquam libero
+  doloribus dolorum, numquam excepturi illo ea a?
+</div>
