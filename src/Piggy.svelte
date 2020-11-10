@@ -13,17 +13,24 @@
           .finished
       );
     }
-    const toCancel = [];
-    // Cancel once done?
-    for (let i = 0; i < completed.length; ++i) {
-      toCancel.push(completed[i].cancel());
+    return completed;
+  };
+
+  const aniParallel = async (aniSequence: aniTerm[]) => {
+    // Store all animations
+    const todo: Promise<Animation>[] = [];
+    // Loop through sequence
+    for (let i = 0; i < aniSequence.length; ++i) {
+      todo.push(
+        aniSequence[i][0].animate(aniSequence[i][1], aniSequence[i][2]).finished
+      );
     }
-    await Promise.all(toCancel);
+    return Promise.all(todo);
   };
 
   // import { tick } from 'svelte';
   onMount(async () => {
-    const aniSequence: aniTerm[] = [
+    const aniPiggy: aniTerm[] = [
       // dollar-mid drops
       [
         document.getElementById('a789c028-01e0-49c7-94b0-54cee7d952f8'),
@@ -68,6 +75,8 @@
           easing: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
         },
       ],
+    ];
+    const aniEars: aniTerm[] = [
       // Nose bump
       [
         document.getElementById('fdc29d92-c6fb-41ca-be8a-b7efc358a520'),
@@ -82,10 +91,33 @@
           easing: 'cubic-bezier(0.68, -0.6, 0.32, 1.6)',
         },
       ],
-      // Ear Back
-      
+      // Right Ear DOWN
+      [
+        document.getElementById('b3094268-c03a-4414-9cac-98f3b3789a1b'),
+        [{}, { transform: 'rotateX(-20deg)' }, {}],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
+      // Left Ear UP
+      [
+        document.getElementById('bf5986bf-eba9-4b31-969c-ae325f537f10'),
+        [{}, { transform: 'rotateX(10deg)' }, {}],
+        {
+          duration: 1000,
+          fill: 'forwards' as FillMode,
+          easing: 'ease-in',
+        },
+      ],
     ];
-    await aniAll(aniSequence);
+
+    const done = [];
+    // Money in, piggy shake!
+    done.push(await aniAll(aniPiggy));
+    // Ear move uwu
+    done.push(await aniParallel(aniEars));
   });
 </script>
 
@@ -140,6 +172,10 @@
         }
         #b9c92815-d1c6-4be1-95eb-009565526158 {
           transform-origin: center;
+          transform-box: fill-box;
+        }
+        #b3094268-c03a-4414-9cac-98f3b3789a1b {
+          transform-origin: bottom;
           transform-box: fill-box;
         }
       </style>
