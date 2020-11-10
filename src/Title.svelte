@@ -1,7 +1,9 @@
 <script lang="ts">
   import { tick } from 'svelte';
   import Hyperinflation from './Hyperinflation.svelte';
-  export let views;
+  import Timeline from './Timeline.svelte';
+
+  let displayTimeline = false;
 </script>
 
 <style lang="scss">
@@ -27,8 +29,10 @@
   <button
     class="next-button"
     on:click|once={async () => {
-      views = [...views, { label: 'Hyperinflation', value: 0, component: Hyperinflation }];
+      console.log(document.body.scrollHeight);
+      displayTimeline = true;
       await tick();
+      console.log(document.body.scrollHeight);
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }}>&#8595;</button>
 </div>

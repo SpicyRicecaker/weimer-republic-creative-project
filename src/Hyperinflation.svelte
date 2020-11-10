@@ -3,7 +3,7 @@
   import Chart from './Chart.svelte';
   import { fade, fly, slide } from 'svelte/transition';
   import FourtyEight from './FourtyEight.svelte';
-  import Hyperinflation2 from './Hyperinflation2.svelte';
+  import EndResult from './EndResult.svelte';
 
   export let views;
   // Everywhere else there should be nothing
@@ -129,7 +129,7 @@
       transition:slide|local
       class="next-button"
       on:click|once={async () => {
-        views = [...views, { label: 'Hyperinflation2', value: 0, component: Hyperinflation2 }];
+        views = [...views, { label: 'Hyperinflation2', value: 0, component: EndResult }];
         await tick();
         window.scrollTo({
           top: document.body.scrollHeight,

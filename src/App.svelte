@@ -1,7 +1,15 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
-  // import Hyperinflation from './hyperinflation.svelte';
+
+  // Tabbed view, created from mageX
+  import Tab from './Tab.svelte';
+
+  // Middle page
   import Title from './Title.svelte';
+  // Right page
+  import Hyperinflation from './Hyperinflation.svelte';
+  // Left page
+  import FourtyEight from './FourtyEight.svelte';
 
   // The way we're storing components
   interface viewItem {
@@ -13,12 +21,23 @@
   // Define our viewlist as an array of components
   interface viewItems extends Array<viewItem> {}
 
-  // View starts off with title screen
+  // View starts off with title screen,
+  // Contains left and right page
   let views: viewItems = [
     {
       label: 'Title',
       value: 0,
       component: Title,
+    },
+    {
+      label: 'Hyperinflation',
+      value: 1,
+      component: Hyperinflation,
+    },
+    {
+      label: 'FourtyEight',
+      value: 1,
+      component: FourtyEight,
     },
   ];
 
@@ -42,7 +61,6 @@
     margin: 0;
     padding: 0;
 
-
     /* The emerging W3C standard
    that is currently Firefox-only */
     scrollbar-width: thin;
@@ -61,7 +79,7 @@
       // border: 3px solid orange;
     }
   }
-  
+
   main {
     height: 100%;
     width: 100%;
@@ -82,7 +100,5 @@
 </svelte:head>
 
 <main>
-  {#each views as view}
-    <svelte:component this={view.component} bind:views />
-  {/each}
+  <Tab {views} />
 </main>
