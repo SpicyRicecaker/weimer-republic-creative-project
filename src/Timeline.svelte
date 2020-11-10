@@ -5,6 +5,7 @@
 
 <style lang="scss">
   @use 'styles/page';
+  @use 'styles/lemon-milk';
 
   // .mainpre {
   //   color: white;

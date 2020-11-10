@@ -24,6 +24,7 @@
 
 <style lang="scss">
   @use 'styles/page';
+  @use 'styles/lemon-milk';
   h1 {
     text-align: center;
     font-family: 'Bebas Neue', cursive;
