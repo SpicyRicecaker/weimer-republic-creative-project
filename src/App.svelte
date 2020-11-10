@@ -88,6 +88,9 @@
   }
 </style>
 
+<svelte:head>
+</svelte:head>
+
 <main>
   <Tab {views} />
 </main>
