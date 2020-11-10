@@ -136,7 +136,8 @@
             &:hover {
               cursor: pointer;
               & .beb75892-66f5-47c4-b470-7813872abcba {
-                fill: #f1c232;
+                stroke: #f1c232;
+                transform: translateY(15%);
               }
             }
           }
@@ -148,6 +149,8 @@
             fill: none;
             stroke: #fff;
             stroke-miterlimit: 10;
+
+            transition: transform .2s;
           }
         </style>
       </defs>
