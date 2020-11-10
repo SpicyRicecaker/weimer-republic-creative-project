@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { onMount } from 'svelte';
-  import { viewed } from './stores';
+  import { viewed, viewedRight } from './stores';
 
   // Tabbed view, created from mageX
   import Tab from './Tab.svelte';
@@ -11,6 +11,7 @@
   import Main from './Main.svelte';
   // Right page
   import Hyperinflation from './Hyperinflation.svelte';
+  import Right from './Right.svelte';
   // Left page
   import FourtyEight from './FourtyEight.svelte';
 
@@ -33,9 +34,9 @@
       component: Main,
     },
     {
-      label: 'Hyperinflation',
+      label: 'Right',
       value: 1,
-      component: Hyperinflation,
+      component: Right,
     },
     {
       label: 'FourtyEight',
@@ -46,7 +47,8 @@
 
   // Onmount add title to the svelte view
   onMount(() => {
-    $viewed = [...$viewed, Title];
+    $viewed = [Title];
+    $viewedRight = [Hyperinflation];
   });
 </script>
 
@@ -88,8 +90,8 @@
   }
 </style>
 
-<svelte:head>
-</svelte:head>
+<!-- <svelte:head>
+</svelte:head> -->
 
 <main>
   <Tab {views} />

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { tick } from 'svelte';
   import Chart from './Chart.svelte';
-  import { fade, fly, slide } from 'svelte/transition';
-  import FourtyEight from './FourtyEight.svelte';
-  import EndResult from './EndResult.svelte';
+  import Piggy from './Piggy.svelte';
+  import { viewedRight, noPiggyBank } from './stores'
+  import { tick } from 'svelte';
+  import { slide } from 'svelte/transition';
 
   // Everywhere else there should be nothing
   let contentMap: Map<number, string> = new Map();
@@ -66,19 +66,19 @@
   $: contentList = getMods(time);
 
   const addTimeline = async () => {
-    // // If we haven't already added the timeline
-    // if ($noTitleExpansion) {
-    //   // Add the timeline to viewed
-    //   $viewed = [...$viewed, Timeline];
-    //   // Scrolldown if possible
-    //   await tick();
-    //   window.scrollTo({
-    //     top: document.body.scrollHeight,
-    //     behavior: 'smooth',
-    //   });
-    //   // Then update the behavior to not add timeline anymore
-    //   $noTitleExpansion = !$noTitleExpansion;
-    // }
+    // If we haven't already added the timeline
+    if ($noPiggyBank) {
+      // Add the timeline to viewed
+      $viewedRight = [...$viewedRight, Piggy];
+      // Scrolldown if possible
+      await tick();
+      // Then update the behavior to not add timeline anymore
+      $noPiggyBank = !$noPiggyBank;
+    }
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
   };
 </script>
 
@@ -140,15 +140,10 @@
   }
 
   .wrapper {
-    display: grid;
-    grid-template-columns: 3rem auto;
+    // display: grid;
+    // grid-template-columns: 3rem auto;
     width: 100%;
     height: 100%;
-  }
-
-  .back {
-    align-self: center;
-    padding: 1rem;
   }
 
   .content {
@@ -169,54 +164,6 @@
 </style>
 
 <div class="wrapper">
-  <div class="back">
-    <!-- <div> -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.96 44.75"><defs>
-        <style lang="scss">
-          .ebe2baaf-a2ba-4012-9452-a6e7b729abf2 {
-            fill: #2b2b2b;
-            opacity: 0;
-          }
-          .a8a30843-d639-4ca4-ab05-e0a6aafc651f {
-            fill: none;
-            stroke: #fff;
-            stroke-miterlimit: 10;
-          }
-          #a6b7e4a0-cd01-4de0-9767-4a7053ac3c7d {
-            &:hover {
-              cursor: pointer;
-              & .a8a30843-d639-4ca4-ab05-e0a6aafc651f {
-                stroke: #f1c232;
-                transform: translateX(-15%);
-              }
-            }
-          }
-          .a8a30843-d639-4ca4-ab05-e0a6aafc651f {
-            transition: transform 0.2s;
-          }
-        </style>
-      </defs>
-      <g id="a6b7e4a0-cd01-4de0-9767-4a7053ac3c7d" data-name="Layer 2">
-        <g
-          id="ada5ea39-6e38-4be9-951c-ce014bef0d06"
-          data-name="Hyperinflationo">
-          <rect
-            class="ebe2baaf-a2ba-4012-9452-a6e7b729abf2"
-            x="-5.4"
-            y="5.4"
-            width="44.75"
-            height="33.96"
-            transform="translate(39.36 5.4) rotate(90)" />
-          <polyline
-            class="a8a30843-d639-4ca4-ab05-e0a6aafc651f"
-            points="27.86 3.7 15.89 22.08 27.86 40.47" />
-          <polyline
-            class="a8a30843-d639-4ca4-ab05-e0a6aafc651f"
-            points="18.15 3.7 6.17 22.08 18.15 40.47" />
-        </g>
-      </g></svg>
-    <!-- </div> -->
-  </div>
   <div class="content">
     <div class="mainpre">
       <h2>

@@ -12,15 +12,14 @@
       $viewed = [...$viewed, Timeline];
       // Scrolldown if possible
       await tick();
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth',
-      });
       // Then update the behavior to not add timeline anymore
       $noTitleExpansion = !$noTitleExpansion;
     }
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    });
   };
-
 </script>
 
 <style lang="scss">
@@ -152,7 +151,7 @@
             stroke: #fff;
             stroke-miterlimit: 10;
 
-            transition: transform .2s;
+            transition: transform 0.2s;
           }
         </style>
       </defs>
