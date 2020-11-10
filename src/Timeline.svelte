@@ -1,5 +1,6 @@
 <script lang="ts">
   import { activeView } from './stores';
+  import { tick } from 'svelte';
 </script>
 
 <style lang="scss">
@@ -340,7 +341,7 @@
             <g
               id="bfc7abb3-cc4a-40b4-a9fe-e11b184b9a9b"
               data-name="hyperinflation"
-              on:click={() => ($activeView = 1)}>
+              on:click={async () => ($activeView = 1)}>
               <rect
                 class="e1ce1418-f4cb-4d56-ac39-73b3cdb7f8a5"
                 x="177.01"
@@ -379,7 +380,11 @@
             <g
               id="a1f0e95e-1a54-43d0-ac3b-053fbe09b365"
               data-name="the-great-depression"
-              on:click={() => ($activeView = 2)}>
+              on:click={async () => {
+                $activeView = 2;
+                await tick();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}>
               <rect
                 class="e1ce1418-f4cb-4d56-ac39-73b3cdb7f8a5"
                 y="102.48"

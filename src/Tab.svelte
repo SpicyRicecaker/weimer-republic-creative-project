@@ -22,11 +22,17 @@
   //   // flex: 1;
   //   // overflow: auto;
   // }
+  div {
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 <!-- <Nav {views} bind:activeView /> -->
 {#each views as view}
   {#if $activeView === view.value}
-    <svelte:component this={view.component} />
+    <div>
+      <svelte:component this={view.component} />
+    </div>
   {/if}
 {/each}

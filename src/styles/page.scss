@@ -10,26 +10,26 @@ $munchingOrange: #f1c232;
 }
 
 .next-button {
-  // Sets to white
-  color: white;
-  font-size: 4rem;
-  // Clears button
-  background: none;
-  outline: none;
-  border: none;
-  // Sets button area
-  padding: 1rem;
-  // Gets rid of slightly rounded corners
-  border-radius: 0;
-  transition: 1s;
-  &:hover {
-    color: $munchingOrange;
-    cursor: pointer;
-  }
-  &:active {
-    transition: 0s;
-    // background: $munchingOrange;
-    background: #2b2b2b;
-    color: white;
-  }
+  // // Sets to white
+  // color: white;
+  // font-size: 4rem;
+  // // Clears button
+  // background: none;
+  // outline: none;
+  // border: none;
+  // // Sets button area
+  // padding: 1rem;
+  // // Gets rid of slightly rounded corners
+  // border-radius: 0;
+  // transition: 1s;
+  // &:hover {
+  //   color: $munchingOrange;
+  //   cursor: pointer;
+  // }
+  // &:active {
+  //   transition: 0s;
+  //   // background: $munchingOrange;
+  //   background: #2b2b2b;
+  //   color: white;
+  // }
 }

@@ -104,7 +104,7 @@
 
 <style lang="scss">
   div {
-    width: 80%;
+    width: 50%;
     // flex: 1;
   }
   
