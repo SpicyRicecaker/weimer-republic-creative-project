@@ -89,10 +89,7 @@
               cursor: pointer;
               // Backstab anim
               & #b8a0f993-51e8-401e-ac5e-7ae2101a72d0 {
-                // Rotate
                 transform: rotate(-90deg);
-                transform-origin: center;
-                transform-box: fill-box;
                 // Change color
                 fill: #f48486;
               }
@@ -100,8 +97,6 @@
               & #e121b736-069d-464d-b603-82233f5e8adb {
                 // Make small
                 transform: scale(0.5) translateX(-50%);
-                transform-origin: center;
-                transform-box: fill-box;
                 // $
                 & #f4055460-32d4-4d22-a13b-f196e80d371c {
                   // Also make the line opacity 100
@@ -114,8 +109,6 @@
                 // Rotate left
                 // Translate left
                 transform: scale(1.4) translateX(-50%) rotate(-90deg);
-                transform-origin: center;
-                transform-box: fill-box;
                 // Make blue
                 fill: #aae0f5;
               }
@@ -123,18 +116,30 @@
           }
           // backstab
           #b8a0f993-51e8-401e-ac5e-7ae2101a72d0 {
+            transform: rotate(0);
+            transform-origin: center;
+            transform-box: fill-box;
             transition: 1s;
           }
+
           // er
           #e121b736-069d-464d-b603-82233f5e8adb {
+            transform: scale(1) translateX(0);
+            transform-origin: center;
+            transform-box: fill-box;
             transition: 1s;
           }
           // sign
           #f4055460-32d4-4d22-a13b-f196e80d371c {
+            transform-origin: center;
+            transform-box: fill-box;
             transition: 1s;
           }
           // biga
           #aede5ae7-1476-4434-a40f-65202e3d3be0 {
+            transform-origin: center;
+            transform-box: fill-box;
+            transform: scale(1) translateX(0) rotate(0);
             transition: 1s;
           }
         </style>
