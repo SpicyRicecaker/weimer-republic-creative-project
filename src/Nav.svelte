@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import { slide } from 'svelte/transition';
+  import { activeView } from './stores';
   interface viewItem {
     label: string;
     value: number;
@@ -8,7 +9,6 @@
   }
   interface viewItems extends Array<viewItem> {}
   export let views: viewItems;
-  export let activeView;
   let visible = false;
 </script>
 
@@ -90,7 +90,7 @@
       {#each views as view}
         <button
           on:click={() => {
-            activeView = view.value;
+            $activeView = view.value;
           }}><span>{view.label}</span>
         </button>
       {/each}

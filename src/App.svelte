@@ -39,7 +39,7 @@
     },
     {
       label: 'FourtyEight',
-      value: 1,
+      value: 2,
       component: FourtyEight,
     },
   ];

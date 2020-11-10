@@ -20,6 +20,7 @@
       $noTitleExpansion = !$noTitleExpansion;
     }
   };
+
 </script>
 
 <style lang="scss">

@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
-  import Nav from './Nav.svelte';
+  // import Nav from './Nav.svelte';
+  import { activeView } from './stores';
   interface viewItem {
     label: string;
     value: number;
@@ -8,7 +9,6 @@
   }
   interface viewItems extends Array<viewItem> {}
   export let views: viewItems;
-  export let activeView = 0;
 </script>
 
 <style lang="scss">
@@ -26,7 +26,7 @@
 
 <!-- <Nav {views} bind:activeView /> -->
 {#each views as view}
-  {#if activeView === view.value}
+  {#if $activeView === view.value}
     <svelte:component this={view.component} />
   {/if}
 {/each}
