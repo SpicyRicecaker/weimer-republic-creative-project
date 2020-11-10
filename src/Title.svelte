@@ -127,6 +127,7 @@
         </g>
       </g></svg>
   </div>
+  <div>have fun, and make sure to hover on everything!</div>
   <!-- <p>by Andy Li</p> -->
   <!-- <button class="next-button" on:click|once={addTimeline}> -->
   <div class="arrow-wrapper">
