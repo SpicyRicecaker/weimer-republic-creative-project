@@ -1,9 +1,25 @@
 <script lang="ts">
+  import { viewed, noTitleExpansion } from './stores';
+
   import { tick } from 'svelte';
-  import Hyperinflation from './Hyperinflation.svelte';
+
   import Timeline from './Timeline.svelte';
 
-  let displayTimeline = false;
+  const addTimeline = async () => {
+    // If we haven't already added the timeline
+    if ($noTitleExpansion) {
+      // Add the timeline to viewed
+      $viewed = [...$viewed, Timeline];
+      // Scrolldown if possible
+      await tick();
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
+      // Then update the behavior to not add timeline anymore
+      $noTitleExpansion = !$noTitleExpansion;
+    }
+  };
 </script>
 
 <style lang="scss">
@@ -26,13 +42,5 @@
     </div>
   </h1>
   <!-- <p>by Andy Li</p> -->
-  <button
-    class="next-button"
-    on:click|once={async () => {
-      console.log(document.body.scrollHeight);
-      displayTimeline = true;
-      await tick();
-      console.log(document.body.scrollHeight);
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }}>&#8595;</button>
+  <button class="next-button" on:click|once={addTimeline}>&#8595;</button>
 </div>

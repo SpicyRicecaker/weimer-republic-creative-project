@@ -20,7 +20,7 @@
   }
   div {
     flex: 1;
-    overflow: auto;
+    // overflow: auto;
   }
 </style>
 
